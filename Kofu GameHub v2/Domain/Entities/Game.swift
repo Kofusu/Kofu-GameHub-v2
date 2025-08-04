@@ -8,21 +8,10 @@
 import Foundation
 
 struct Game: Identifiable {
-    var id: Int
-    var name: String
-    var slug: String
-    var released: Date?
-    var tba: Bool
-    var backgroundImage: URL
-    var rating: Double
-    var ratingTop: Int
-    var ratings: [GameRating]
-    var ratingCount: Int
-    var reviewsTextCount: String
-    var added: Int
-    var addedByStatus: GameAddedByStatus
-    var metacritic, playtime, suggestionsCount: Int
-    var updated: Date
-    var esrbRating: GameESRBRating
-    var platforms: [GamePlatform]
+    let id: Int
+    let name: String
+    let released: Date?
+    let backgroundImage: URL
+    let rating: Double
+    let updated: Date
 }

@@ -8,6 +8,6 @@
 import Foundation
 
 struct DetailGameMetacriticPlatform {
-    var metascore: Int
-    var url: URL
+    let metascore: Int
+    let url: URL
 }

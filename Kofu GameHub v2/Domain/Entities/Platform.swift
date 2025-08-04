@@ -8,12 +8,9 @@
 import Foundation
 
 struct Platform: Identifiable {
-    var id: Int
-    var name: String
-    var slug: String
-    var gamesCount: Int
-    var imageBackground: URL
-    var image: URL?
-    var yearStart: Date?
-    var yearEnd: Date?
+    let id: Int
+    let name: String
+    let gamesCount: Int
+    let imageBackground: URL
+    let image: URL?
 }

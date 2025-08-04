@@ -8,9 +8,8 @@
 import Foundation
 
 struct Developer: Identifiable {
-    var id: Int
-    var name: String
-    var slug: String
-    var gamesCount: Int
-    var imageBackground: URL
+    let id: Int
+    let name: String
+    let gamesCount: Int
+    let imageBackground: URL
 }

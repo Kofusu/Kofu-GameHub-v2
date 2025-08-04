@@ -9,9 +9,6 @@ import SwiftUI
 import SwiftData
 
 struct HomeView: View {
-    @Environment(\.modelContext) private var modelContext
-    @Query private var likedGame: [LikedGame]
-
     var body: some View {
         Text("Hello World!")
     }
