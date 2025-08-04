@@ -11,5 +11,5 @@ struct Developer: Identifiable {
     let id: Int
     let name: String
     let gamesCount: Int
-    let imageBackground: URL
+    let imageBackground: URL?
 }

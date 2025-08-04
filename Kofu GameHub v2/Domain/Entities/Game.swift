@@ -11,7 +11,7 @@ struct Game: Identifiable {
     let id: Int
     let name: String
     let released: Date?
-    let backgroundImage: URL
+    let backgroundImage: URL?
     let rating: Double
-    let updated: Date
+    let updated: Date?
 }

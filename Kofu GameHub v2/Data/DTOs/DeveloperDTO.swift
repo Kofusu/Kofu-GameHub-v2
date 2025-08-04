@@ -33,4 +33,8 @@ struct DeveloperDTO: Identifiable, Decodable {
             imageBackground = nil
         }
     }
+    
+    func toEntity() -> Developer {
+        Developer(id: id, name: name, gamesCount: gamesCount, imageBackground: imageBackground)
+    }
 }

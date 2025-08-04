@@ -12,7 +12,7 @@ struct DetailGameDTO: Codable {
     let slug: String
     let name: String
     let nameOriginal: String
-    let description: String
+    let description: String?
     let metacriticPlatforms: [DetailGameMetacriticPlatform]
     let released: Date?
     let tba: Bool
@@ -88,7 +88,6 @@ struct DetailGameDTO: Codable {
         slug = try container.decode(String.self, forKey: .slug)
         name = try container.decode(String.self, forKey: .name)
         nameOriginal = try container.decode(String.self, forKey: .nameOriginal)
-        description = try container.decode(String.self, forKey: .description)
         metacriticPlatforms = try container.decode([DetailGameMetacriticPlatform].self, forKey: .metacriticPlatforms)
         tba = try container.decode(Bool.self, forKey: .tba)
         screenshotsCount = try container.decode(Int.self, forKey: .screenshotsCount)
@@ -108,6 +107,7 @@ struct DetailGameDTO: Codable {
         gameSeriesCount = try container.decode(Int.self, forKey: .gameSeriesCount)
         
         // Optional fields - safe decoding
+        description = try container.decodeIfPresent(String.self, forKey: .description)
         addedByStatus = try container.decodeIfPresent(GameAddedByStatus.self, forKey: .addedByStatus)
         metacritic = try container.decodeIfPresent(Int.self, forKey: .metacritic)
         playtime = try container.decodeIfPresent(Int.self, forKey: .playtime)
@@ -166,6 +166,10 @@ struct DetailGameDTO: Codable {
         } else {
             metacriticURL = nil
         }
+    }
+    
+    func toEntity() -> DetailGame {
+        DetailGame(id: id, name: name, nameOriginal: nameOriginal, description: description, released: released, backgroundImage: backgroundImage, backgroundImageAdditional: backgroundImageAdditional, website: website, rating: rating, updated: updated)
     }
 }
 

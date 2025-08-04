@@ -118,6 +118,10 @@ struct GameDTO: Codable {
             backgroundImage = nil
         }
     }
+    
+    func toEntity() -> Game {
+        Game(id: id, name: name, released: released, backgroundImage: backgroundImage, rating: rating, updated: updated)
+    }
 }
 
 // Game Rating

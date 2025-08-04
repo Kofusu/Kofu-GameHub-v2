@@ -40,4 +40,8 @@ struct PlatformDTO: Identifiable, Codable {
             image = nil
         }
     }
+    
+    func toEntity() -> Platform {
+        Platform(id: id, name: name, gamesCount: gamesCount, imageBackground: imageBackground, image: image)
+    }
 }
