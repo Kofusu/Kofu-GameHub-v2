@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		DC86C1C82E3D16BB0044B66D /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = DC86C1C72E3D16BB0044B66D /* Swinject */; };
+		DC86C1CB2E3D16C70044B66D /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = DC86C1CA2E3D16C70044B66D /* Alamofire */; };
+		DC86C1CE2E3D16D10044B66D /* Flow in Frameworks */ = {isa = PBXBuildFile; productRef = DC86C1CD2E3D16D10044B66D /* Flow */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		DC86C1832E3D0FBD0044B66D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -25,8 +31,8 @@
 
 /* Begin PBXFileReference section */
 		DC86C1732E3D0FBA0044B66D /* Kofu GameHub v2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Kofu GameHub v2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		DC86C1822E3D0FBD0044B66D /* Kofu GameHub v2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Kofu GameHub v2Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		DC86C18C2E3D0FBD0044B66D /* Kofu GameHub v2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Kofu GameHub v2UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC86C1822E3D0FBD0044B66D /* Kofu GameHub v2 - Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Kofu GameHub v2 - Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC86C18C2E3D0FBD0044B66D /* Kofu GameHub v2 - UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Kofu GameHub v2 - UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -35,14 +41,14 @@
 			path = "Kofu GameHub v2";
 			sourceTree = "<group>";
 		};
-		DC86C1852E3D0FBD0044B66D /* Kofu GameHub v2Tests */ = {
+		DC86C1852E3D0FBD0044B66D /* Kofu GameHub v2 - Tests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "Kofu GameHub v2Tests";
+			path = "Kofu GameHub v2 - Tests";
 			sourceTree = "<group>";
 		};
-		DC86C18F2E3D0FBD0044B66D /* Kofu GameHub v2UITests */ = {
+		DC86C18F2E3D0FBD0044B66D /* Kofu GameHub v2 - UITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "Kofu GameHub v2UITests";
+			path = "Kofu GameHub v2 - UITests";
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -52,6 +58,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC86C1C82E3D16BB0044B66D /* Swinject in Frameworks */,
+				DC86C1CB2E3D16C70044B66D /* Alamofire in Frameworks */,
+				DC86C1CE2E3D16D10044B66D /* Flow in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,8 +85,8 @@
 			isa = PBXGroup;
 			children = (
 				DC86C1752E3D0FBA0044B66D /* Kofu GameHub v2 */,
-				DC86C1852E3D0FBD0044B66D /* Kofu GameHub v2Tests */,
-				DC86C18F2E3D0FBD0044B66D /* Kofu GameHub v2UITests */,
+				DC86C1852E3D0FBD0044B66D /* Kofu GameHub v2 - Tests */,
+				DC86C18F2E3D0FBD0044B66D /* Kofu GameHub v2 - UITests */,
 				DC86C1742E3D0FBA0044B66D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -86,8 +95,8 @@
 			isa = PBXGroup;
 			children = (
 				DC86C1732E3D0FBA0044B66D /* Kofu GameHub v2.app */,
-				DC86C1822E3D0FBD0044B66D /* Kofu GameHub v2Tests.xctest */,
-				DC86C18C2E3D0FBD0044B66D /* Kofu GameHub v2UITests.xctest */,
+				DC86C1822E3D0FBD0044B66D /* Kofu GameHub v2 - Tests.xctest */,
+				DC86C18C2E3D0FBD0044B66D /* Kofu GameHub v2 - UITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -112,14 +121,17 @@
 			);
 			name = "Kofu GameHub v2";
 			packageProductDependencies = (
+				DC86C1C72E3D16BB0044B66D /* Swinject */,
+				DC86C1CA2E3D16C70044B66D /* Alamofire */,
+				DC86C1CD2E3D16D10044B66D /* Flow */,
 			);
 			productName = "Kofu GameHub v2";
 			productReference = DC86C1732E3D0FBA0044B66D /* Kofu GameHub v2.app */;
 			productType = "com.apple.product-type.application";
 		};
-		DC86C1812E3D0FBD0044B66D /* Kofu GameHub v2Tests */ = {
+		DC86C1812E3D0FBD0044B66D /* Kofu GameHub v2 - Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DC86C1992E3D0FBD0044B66D /* Build configuration list for PBXNativeTarget "Kofu GameHub v2Tests" */;
+			buildConfigurationList = DC86C1992E3D0FBD0044B66D /* Build configuration list for PBXNativeTarget "Kofu GameHub v2 - Tests" */;
 			buildPhases = (
 				DC86C17E2E3D0FBD0044B66D /* Sources */,
 				DC86C17F2E3D0FBD0044B66D /* Frameworks */,
@@ -131,18 +143,18 @@
 				DC86C1842E3D0FBD0044B66D /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				DC86C1852E3D0FBD0044B66D /* Kofu GameHub v2Tests */,
+				DC86C1852E3D0FBD0044B66D /* Kofu GameHub v2 - Tests */,
 			);
-			name = "Kofu GameHub v2Tests";
+			name = "Kofu GameHub v2 - Tests";
 			packageProductDependencies = (
 			);
 			productName = "Kofu GameHub v2Tests";
-			productReference = DC86C1822E3D0FBD0044B66D /* Kofu GameHub v2Tests.xctest */;
+			productReference = DC86C1822E3D0FBD0044B66D /* Kofu GameHub v2 - Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		DC86C18B2E3D0FBD0044B66D /* Kofu GameHub v2UITests */ = {
+		DC86C18B2E3D0FBD0044B66D /* Kofu GameHub v2 - UITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DC86C19C2E3D0FBD0044B66D /* Build configuration list for PBXNativeTarget "Kofu GameHub v2UITests" */;
+			buildConfigurationList = DC86C19C2E3D0FBD0044B66D /* Build configuration list for PBXNativeTarget "Kofu GameHub v2 - UITests" */;
 			buildPhases = (
 				DC86C1882E3D0FBD0044B66D /* Sources */,
 				DC86C1892E3D0FBD0044B66D /* Frameworks */,
@@ -154,13 +166,13 @@
 				DC86C18E2E3D0FBD0044B66D /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				DC86C18F2E3D0FBD0044B66D /* Kofu GameHub v2UITests */,
+				DC86C18F2E3D0FBD0044B66D /* Kofu GameHub v2 - UITests */,
 			);
-			name = "Kofu GameHub v2UITests";
+			name = "Kofu GameHub v2 - UITests";
 			packageProductDependencies = (
 			);
 			productName = "Kofu GameHub v2UITests";
-			productReference = DC86C18C2E3D0FBD0044B66D /* Kofu GameHub v2UITests.xctest */;
+			productReference = DC86C18C2E3D0FBD0044B66D /* Kofu GameHub v2 - UITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -195,14 +207,20 @@
 			);
 			mainGroup = DC86C16A2E3D0FBA0044B66D;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				DC86C1BE2E3D13F10044B66D /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */,
+				DC86C1C62E3D16BB0044B66D /* XCRemoteSwiftPackageReference "Swinject" */,
+				DC86C1C92E3D16C70044B66D /* XCRemoteSwiftPackageReference "Alamofire" */,
+				DC86C1CC2E3D16D10044B66D /* XCRemoteSwiftPackageReference "SwiftUI-Flow" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = DC86C1742E3D0FBA0044B66D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				DC86C1722E3D0FBA0044B66D /* Kofu GameHub v2 */,
-				DC86C1812E3D0FBD0044B66D /* Kofu GameHub v2Tests */,
-				DC86C18B2E3D0FBD0044B66D /* Kofu GameHub v2UITests */,
+				DC86C1812E3D0FBD0044B66D /* Kofu GameHub v2 - Tests */,
+				DC86C18B2E3D0FBD0044B66D /* Kofu GameHub v2 - UITests */,
 			);
 		};
 /* End PBXProject section */
@@ -489,8 +507,9 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6TYR8H3MLM;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Kofu-GameHub-v2---UITests-Info.plist";
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kofu.Kofu-GameHub-v2UITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -506,8 +525,9 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6TYR8H3MLM;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Kofu-GameHub-v2---UITests-Info.plist";
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kofu.Kofu-GameHub-v2UITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -539,7 +559,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DC86C1992E3D0FBD0044B66D /* Build configuration list for PBXNativeTarget "Kofu GameHub v2Tests" */ = {
+		DC86C1992E3D0FBD0044B66D /* Build configuration list for PBXNativeTarget "Kofu GameHub v2 - Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DC86C19A2E3D0FBD0044B66D /* Debug */,
@@ -548,7 +568,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DC86C19C2E3D0FBD0044B66D /* Build configuration list for PBXNativeTarget "Kofu GameHub v2UITests" */ = {
+		DC86C19C2E3D0FBD0044B66D /* Build configuration list for PBXNativeTarget "Kofu GameHub v2 - UITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DC86C19D2E3D0FBD0044B66D /* Debug */,
@@ -558,6 +578,59 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		DC86C1BE2E3D13F10044B66D /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SimplyDanny/SwiftLintPlugins";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.59.1;
+			};
+		};
+		DC86C1C62E3D16BB0044B66D /* XCRemoteSwiftPackageReference "Swinject" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Swinject/Swinject.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.9.1;
+			};
+		};
+		DC86C1C92E3D16C70044B66D /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.10.2;
+			};
+		};
+		DC86C1CC2E3D16D10044B66D /* XCRemoteSwiftPackageReference "SwiftUI-Flow" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/tevelee/SwiftUI-Flow.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DC86C1C72E3D16BB0044B66D /* Swinject */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DC86C1C62E3D16BB0044B66D /* XCRemoteSwiftPackageReference "Swinject" */;
+			productName = Swinject;
+		};
+		DC86C1CA2E3D16C70044B66D /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DC86C1C92E3D16C70044B66D /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		DC86C1CD2E3D16D10044B66D /* Flow */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DC86C1CC2E3D16D10044B66D /* XCRemoteSwiftPackageReference "SwiftUI-Flow" */;
+			productName = Flow;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = DC86C16B2E3D0FBA0044B66D /* Project object */;
 }

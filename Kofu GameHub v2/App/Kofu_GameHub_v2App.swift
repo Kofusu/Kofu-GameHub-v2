@@ -25,7 +25,7 @@ struct Kofu_GameHub_v2App: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HomeView()
         }
         .modelContainer(sharedModelContainer)
     }
