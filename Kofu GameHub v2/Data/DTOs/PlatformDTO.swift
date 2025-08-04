@@ -16,7 +16,6 @@ struct PlatformDTO: Identifiable, Codable {
     
     enum CodingKeys: String, CodingKey {
         case id, name, image
-        
         case gamesCount = "games_count"
         case imageBackground = "image_background"
     }
@@ -28,17 +27,17 @@ struct PlatformDTO: Identifiable, Codable {
         name = try container.decode(String.self, forKey: .name)
         gamesCount = try container.decode(Int.self, forKey: .gamesCount)
         
+        // Safe URL parsing - no force unwrapping
         if let imageBackgroundString = try container.decodeIfPresent(String.self, forKey: .imageBackground) {
-            imageBackground = URL(string: imageBackgroundString)!
+            imageBackground = URL(string: imageBackgroundString)
         } else {
             imageBackground = nil
         }
         
         if let imageString = try container.decodeIfPresent(String.self, forKey: .image) {
-            image = URL(string: imageString)!
+            image = URL(string: imageString)
         } else {
             image = nil
         }
     }
 }
-
