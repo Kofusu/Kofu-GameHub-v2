@@ -10,7 +10,7 @@ import SwiftData
 
 struct HomeView: View {
     @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
+    @Query private var likedGame: [LikedGame]
 
     var body: some View {
         Text("Hello World!")
@@ -19,5 +19,5 @@ struct HomeView: View {
 
 #Preview {
     HomeView()
-        .modelContainer(for: Item.self, inMemory: true)
+        .modelContainer(for: [LikedGame.self], inMemory: true)
 }
