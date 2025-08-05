@@ -7,6 +7,38 @@
 
 import Foundation
 
+struct PlatformListResponse: Codable {
+    let count: Int
+    let next: URL?
+    let previous: URL?
+    let results: [PlatformDTO]
+    
+    enum CodingKeys: String, CodingKey {
+        case count, next, previous, results
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        // Required Fields
+        count = try container.decode(Int.self, forKey: .count)
+        results = try container.decode([PlatformDTO].self, forKey: .results)
+        
+        // Optional Fields
+        if let nextString = try container.decodeIfPresent(String.self, forKey: .next) {
+            next = URL(string: nextString)
+        } else {
+            next = nil
+        }
+        
+        if let previousString = try container.decodeIfPresent(String.self, forKey: .previous) {
+            previous = URL(string: previousString)
+        } else {
+            previous = nil
+        }
+    }
+}
+
 struct PlatformDTO: Identifiable, Codable {
     let id: Int
     let name: String
