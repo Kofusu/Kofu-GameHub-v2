@@ -85,6 +85,11 @@
             value = "bd05f3e0f4b64915af2a6d2507b208a4"
             isEnabled = "YES">
          </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "APP_NAME"
+            value = "Kofu GameHub v2"
+            isEnabled = "YES">
+         </EnvironmentVariable>
       </EnvironmentVariables>
    </LaunchAction>
    <ProfileAction

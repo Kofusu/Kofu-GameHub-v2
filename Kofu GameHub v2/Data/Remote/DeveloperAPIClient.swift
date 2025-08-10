@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 
 struct DeveloperAPIClient {
-    func fetchDevelopers(limit: Int? = 10, offset: Int? = 0) async throws -> [Developer] {
+    func fetchDevelopers(limit: Int? = 10, offset: Int? = 0) async throws -> [DeveloperDTO] {
         var urlComponent = URLComponents(string: "\(API_URL)/developers")
         urlComponent?.queryItems = [
             URLQueryItem(name: "key", value: API_KEY),
@@ -24,6 +24,6 @@ struct DeveloperAPIClient {
         let (data, _) = try await URLSession.shared.data(from: url)
         let response = try JSONDecoder().decode(DeveloperListResponse.self, from: data)
         
-        return response.results.map { $0.toEntity() }
+        return response.results
     }
 }

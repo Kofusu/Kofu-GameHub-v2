@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 
 struct GameAPIClient {
-    func fetchPopularGames(limit: Int? = 10, offset: Int? = 0) async throws -> [Game] {
+    func fetchPopularGames(limit: Int? = 10, offset: Int? = 0) async throws -> [GameDTO] {
         var urlComponents = URLComponents(string: "\(API_URL)/games")
         urlComponents?.queryItems = [
             URLQueryItem(name: "key", value: API_KEY),
@@ -25,10 +25,10 @@ struct GameAPIClient {
         let (data, _) = try await URLSession.shared.data(from: url)
         let response = try JSONDecoder().decode(GameListResponse.self, from: data)
         
-        return response.results.map { $0.toEntity() }
+        return response.results
     }
     
-    func fetchNewestGames(limit: Int? = 10, offset: Int? = 0) async throws -> [Game] {
+    func fetchNewestGames(limit: Int? = 10, offset: Int? = 0) async throws -> [GameDTO] {
         var urlComponents = URLComponents(string: "\(API_URL)/games")
         urlComponents?.queryItems = [
             URLQueryItem(name: "key", value: API_KEY),
@@ -44,10 +44,10 @@ struct GameAPIClient {
         let (data, _) = try await URLSession.shared.data(from: url)
         let response = try JSONDecoder().decode(GameListResponse.self, from: data)
         
-        return response.results.map { $0.toEntity() }
+        return response.results
     }
     
-    func fetchSearchGames(query: String) async throws -> [Game] {
+    func fetchSearchGames(query: String) async throws -> [GameDTO] {
         var urlComponents = URLComponents(string: "\(API_URL)/games")
         urlComponents?.queryItems = [
             URLQueryItem(name: "key", value: API_KEY),
@@ -61,10 +61,10 @@ struct GameAPIClient {
         let (data, _) = try await URLSession.shared.data(from: url)
         let response = try JSONDecoder().decode(GameListResponse.self, from: data)
         
-        return response.results.map { $0.toEntity() }
+        return response.results
     }
     
-    func fetchDetailGames(id: Int) async throws -> DetailGame {
+    func fetchDetailGames(id: Int) async throws -> DetailGameDTO {
         var urlComponents = URLComponents(string: "\(API_URL)/games/\(id)")
         urlComponents?.queryItems = [
             URLQueryItem(name: "key", value: API_KEY),
@@ -77,6 +77,6 @@ struct GameAPIClient {
         let (data, _) = try await URLSession.shared.data(from: url)
         let response = try JSONDecoder().decode(DetailGameDTO.self, from: data)
         
-        return response.toEntity()
+        return response
     }
 }

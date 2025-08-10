@@ -12,5 +12,5 @@ protocol GameRepository {
     func getNewestGames(limit: Int?, offset: Int?) async throws -> [Game]
     func searchGames(query: String) async throws -> [Game]
     func getDetailGame(id: Int) async throws -> DetailGame
-    func getLikedGames(ids: [Int]) async throws -> [DetailGame]
+//    func getLikedGames(ids: [Int]) async throws -> [DetailGame]
 }

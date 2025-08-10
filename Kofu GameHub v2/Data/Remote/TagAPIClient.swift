@@ -1,15 +1,14 @@
 //
-//  PlatformAPIClient.swift
+//  TagAPIClient.swift
 //  Kofu GameHub v2
 //
-//  Created by Hendratara Pratama on 05/08/25.
+//  Created by Hendratara Pratama on 08/08/25.
 //
 
 import Foundation
-import Alamofire
 
-struct PlatformAPIClient {
-    func fetchPlatforms(limit: Int? = 10, offset: Int? = 0) async throws -> [PlatformDTO] {
+struct TagAPIClient {
+    func fetchTags(limit: Int? = 10, offset: Int? = 0) async throws -> [TagDTO] {
         var urlComponent = URLComponents(string: "\(API_URL)/platforms")
         urlComponent?.queryItems = [
             URLQueryItem(name: "key", value: API_KEY),
@@ -22,8 +21,9 @@ struct PlatformAPIClient {
         }
         
         let (data, _) = try await URLSession.shared.data(from: url)
-        let response = try JSONDecoder().decode(PlatformListResponse.self, from: data)
+        let response = try JSONDecoder().decode(TagListResponse.self, from: data)
         
         return response.results
     }
 }
+

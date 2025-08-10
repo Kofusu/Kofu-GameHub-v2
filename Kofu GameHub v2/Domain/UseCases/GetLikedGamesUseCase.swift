@@ -7,18 +7,18 @@
 
 import Foundation
 
-protocol GetLikedGamesUseCase {
-    func execute(ids: [Int]) async throws -> [DetailGame]
-}
-
-final class GetLikedGamesUseCaseImpl: GetLikedGamesUseCase {
-    var repository: GameRepository
-    
-    init(repository: GameRepository) {
-        self.repository = repository
-    }
-    
-    func execute(ids: [Int]) async throws -> [DetailGame] {
-        try await repository.getLikedGames(ids: ids)
-    }
-}
+//protocol GetLikedGamesUseCase {
+//    func execute(ids: [Int]) async throws -> [DetailGame]
+//}
+//
+//final class GetLikedGamesUseCaseImpl: GetLikedGamesUseCase {
+//    var repository: GameRepository
+//    
+//    init(repository: GameRepository) {
+//        self.repository = repository
+//    }
+//    
+//    func execute(ids: [Int]) async throws -> [DetailGame] {
+//        try await repository.getLikedGames(ids: ids)
+//    }
+//}
