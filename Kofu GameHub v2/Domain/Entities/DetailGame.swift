@@ -17,5 +17,4 @@ struct DetailGame {
     let backgroundImageAdditional: URL?
     let website: URL?
     let rating: Double
-    let updated: Date?
 }

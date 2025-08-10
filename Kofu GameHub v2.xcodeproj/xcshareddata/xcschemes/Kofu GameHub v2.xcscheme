@@ -77,7 +77,7 @@
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "API_URL"
-            value = "https://api.rawg.io/api/"
+            value = "https://api.rawg.io/api"
             isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable

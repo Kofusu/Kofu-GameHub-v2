@@ -7,11 +7,11 @@
 
 import Foundation
 
-protocol GetDevelopers {
+protocol GetDevelopersUseCase {
     func execute(limit: Int?, offset: Int?) async throws -> [Developer]
 }
 
-final class GetDevelopersImpl: GetDevelopers {
+final class GetDevelopersUseCaseImpl: GetDevelopersUseCase {
     var repository: DeveloperRepository
     
     init(repository: DeveloperRepository) {

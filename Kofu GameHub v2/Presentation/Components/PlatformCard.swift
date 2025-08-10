@@ -13,16 +13,26 @@ struct PlatformCard: View {
     let title: String
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(spacing: 8) {
             if let img = image {
-                ProgressView()
-                    .frame(width: 80, height: 80)
-                    .background {
-                        RoundedRectangle(cornerRadius: 4)
-                            .fill(.gray)
+                AsyncImage(url: img) { phase in
+                    switch phase {
+                    case .empty:
+                        ProgressView()
+                    case .success(let image):
+                        image
+                            .resizable()
+                            .scaledToFill()
+                    case .failure:
+                        Image(systemName: "icloud.slash")
+                    @unknown default:
+                        EmptyView()
                     }
+                }
+                .frame(width: 80, height: 80)
+                .clipShape(RoundedRectangle(cornerRadius: 4))
             } else {
-                Image(systemName: "icloud.slash")
+                ProgressView()
                     .frame(width: 80, height: 80)
                     .background {
                         RoundedRectangle(cornerRadius: 4)
@@ -32,6 +42,9 @@ struct PlatformCard: View {
             
             Text(title)
                 .font(.customBody)
+                .lineLimit(1)
+                .truncationMode(.middle)
+                .frame(maxWidth: 80)
             
         }
     }

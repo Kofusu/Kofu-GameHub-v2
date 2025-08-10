@@ -15,7 +15,7 @@ struct GameAPIClient {
             URLQueryItem(name: "key", value: API_KEY),
             URLQueryItem(name: "ordering", value: "-rating"),
             URLQueryItem(name: "page_size", value: String(limit!)),
-            URLQueryItem(name: "page", value: String(offset!)),
+            URLQueryItem(name: "page", value: String((offset ?? 0) + 1)),
         ]
         
         guard let url = urlComponents?.url else {
@@ -34,7 +34,7 @@ struct GameAPIClient {
             URLQueryItem(name: "key", value: API_KEY),
             URLQueryItem(name: "ordering", value: "-released"),
             URLQueryItem(name: "page_size", value: String(limit!)),
-            URLQueryItem(name: "page", value: String(offset!)),
+            URLQueryItem(name: "page", value: String((offset ?? 0) + 1)),
         ]
         
         guard let url = urlComponents?.url else {

@@ -18,7 +18,27 @@ struct HomeView: View {
                                             repository: TagRepositoryImpl(
                                                 client: TagAPIClient()
                                             )
-                                        )
+                                        ),
+                                        getDevelopersUseCase: GetDevelopersUseCaseImpl(
+                                            repository: DeveloperRepositoryImpl(
+                                                client: DeveloperAPIClient()
+                                            )
+                                        ),
+                                        getPlatformUseCase: GetPlatformsUseCaseImpl(
+                                            repository: PlatformRepositoryImpl(
+                                                client: PlatformAPIClient()
+                                            )
+                                        ),
+                                        getPopularGameUseCase: GetPopularGameUseCaseImpl(
+                                            repository: GameRepositoryImpl(
+                                                client: GameAPIClient()
+                                            )
+                                        ),
+                                        getNewestGameUseCase: GetNewestGameUseCaseImpl(
+                                            repository: GameRepositoryImpl(
+                                                client: GameAPIClient()
+                                            )
+                                        ),
                                     )
         )
     }
@@ -78,11 +98,18 @@ struct HomeView: View {
             
             ScrollView(.horizontal) {
                 HStack(spacing: 14) {
-                    PlatformCard(image: nil, title: "Title")
-                    PlatformCard(image: nil, title: "Title")
-                    PlatformCard(image: nil, title: "Title")
-                    PlatformCard(image: nil, title: "Title")
-                    PlatformCard(image: nil, title: "Title")
+                    if viewModel.isLoading {
+                        PlatformCard(image: nil, title: "......")
+                        PlatformCard(image: nil, title: "......")
+                        PlatformCard(image: nil, title: "......")
+                        PlatformCard(image: nil, title: "......")
+                        PlatformCard(image: nil, title: "......")
+                    } else {
+                        ForEach(viewModel.platforms) { platform in
+                            PlatformCard(image: platform.imageBackground, title: platform.name)
+                        }
+                    }
+                    
                 }
                 .container()
             }
@@ -108,10 +135,15 @@ struct HomeView: View {
             
             ScrollView(.horizontal) {
                 HStack(spacing: 14) {
-                    GameCard(id: 1, name: "Name", image: nil, rating: 4.0)
-                    GameCard(id: 1, name: "Name", image: nil, rating: 4.0)
-                    GameCard(id: 1, name: "Name", image: nil, rating: 4.0)
-                    GameCard(id: 1, name: "Name", image: nil, rating: 4.0)
+                    if viewModel.isLoading {
+                        GameCard(id: 0, name: ".....", image: nil, rating: 0)
+                        GameCard(id: 0, name: ".....", image: nil, rating: 0)
+                        GameCard(id: 0, name: ".....", image: nil, rating: 0)
+                    } else {
+                        ForEach(viewModel.popularGames) { game in
+                            GameCard(id: game.id, name: game.name, image:game.backgroundImage, rating: game.rating)
+                        }
+                    }
                 }
                 .container()
             }
@@ -138,10 +170,15 @@ struct HomeView: View {
             
             ScrollView(.horizontal) {
                 HStack(spacing: 14) {
-                    GameCard(id: 1, name: "Name", image: nil, rating: 4.0)
-                    GameCard(id: 1, name: "Name", image: nil, rating: 4.0)
-                    GameCard(id: 1, name: "Name", image: nil, rating: 4.0)
-                    GameCard(id: 1, name: "Name", image: nil, rating: 4.0)
+                    if viewModel.isLoading {
+                        GameCard(id: 0, name: ".....", image: nil, rating: 0)
+                        GameCard(id: 0, name: ".....", image: nil, rating: 0)
+                        GameCard(id: 0, name: ".....", image: nil, rating: 0)
+                    } else {
+                        ForEach(viewModel.newestGames) { game in
+                            GameCard(id: game.id, name: game.name, image:game.backgroundImage, rating: game.rating)
+                        }
+                    }
                 }
                 .container()
             }
@@ -162,10 +199,15 @@ struct HomeView: View {
             
             ScrollView {
                 VStack(spacing: 11) {
-                    DeveloperCard(id: 1, name: "From Software", gamesCount: 12, image: nil)
-                    DeveloperCard(id: 1, name: "From Software", gamesCount: 12, image: nil)
-                    DeveloperCard(id: 1, name: "From Software", gamesCount: 12, image: nil)
-                    DeveloperCard(id: 1, name: "From Software", gamesCount: 12, image: nil)
+                    if viewModel.isLoading {
+                        DeveloperCard(id: 0, name: "......", gamesCount: 0, image: nil)
+                        DeveloperCard(id: 0, name: "......", gamesCount: 0, image: nil)
+                        DeveloperCard(id: 0, name: "......", gamesCount: 0, image: nil)
+                    } else {
+                        ForEach(viewModel.developers) { developer in
+                            DeveloperCard(id: developer.id, name: developer.name, gamesCount: developer.gamesCount, image: developer.imageBackground)
+                        }
+                    }
                 }
                 .container()
             }

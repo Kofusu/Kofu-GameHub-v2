@@ -11,7 +11,7 @@ protocol GetPlatformsUseCase {
     func execute(limit: Int?, offset: Int?) async throws -> [Platform]
 }
 
-final class GetPlatformUseCase: GetPlatformsUseCase {
+final class GetPlatformsUseCaseImpl: GetPlatformsUseCase {
     var repository: PlatformRepository
     
     init(repository: PlatformRepository) {

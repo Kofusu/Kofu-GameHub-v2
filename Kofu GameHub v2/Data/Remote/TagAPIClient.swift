@@ -9,7 +9,7 @@ import Foundation
 
 struct TagAPIClient {
     func fetchTags(limit: Int? = 10, offset: Int? = 0) async throws -> [TagDTO] {
-        var urlComponent = URLComponents(string: "\(API_URL)tags")
+        var urlComponent = URLComponents(string: "\(API_URL)/tags")
         urlComponent?.queryItems = [
             URLQueryItem(name: "key", value: API_KEY),
             URLQueryItem(name: "page_size", value: String(limit!)),

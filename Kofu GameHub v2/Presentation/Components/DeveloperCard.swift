@@ -17,14 +17,24 @@ struct DeveloperCard: View {
     var body: some View {
         HStack(alignment: .top, spacing: 11) {
             if let img = image {
-                ProgressView()
-                    .frame(width: 128, height: 72)
-                    .background {
-                        RoundedRectangle(cornerRadius: 4)
-                            .fill(.gray)
+                AsyncImage(url: img) { phase in
+                    switch phase {
+                    case .empty:
+                        ProgressView()
+                    case .success(let image):
+                        image
+                            .resizable()
+                            .scaledToFill()
+                    case .failure:
+                        Image(systemName: "icloud.slash")
+                    @unknown default:
+                        EmptyView()
                     }
+                }
+                .frame(width: 128, height: 72)
+                .clipShape(RoundedRectangle(cornerRadius: 4))
             } else {
-                Image(systemName: "icloud.slash")
+                ProgressView()
                     .frame(width: 128, height: 72)
                     .background {
                         RoundedRectangle(cornerRadius: 4)
@@ -38,6 +48,8 @@ struct DeveloperCard: View {
                 Text("\(gamesCount) Games")
                     .font(.customBody)
             }
+            
+            Spacer()
         }
     }
 }
