@@ -9,6 +9,20 @@ import SwiftUI
 import SwiftData
 
 struct HomeView: View {
+    @StateObject var viewModel: HomeViewModel
+    
+    init() {
+        _viewModel = StateObject(wrappedValue:
+                                    HomeViewModel(
+                                        getTagsUseCase: GetTagUseCaseImpl(
+                                            repository: TagRepositoryImpl(
+                                                client: TagAPIClient()
+                                            )
+                                        )
+                                    )
+        )
+    }
+    
     var body: some View {
         NavigationStack {
             VStack(spacing: 0) {
@@ -26,6 +40,9 @@ struct HomeView: View {
             }
             .scrollIndicators(.hidden)
             .background(.darkBlue)
+            .task {
+                await viewModel.loadData()
+            }
         }
     }
     
@@ -33,11 +50,15 @@ struct HomeView: View {
     var ListCategory: some View {
         ScrollView(.horizontal) {
             HStack(spacing: 14) {
-                Text("Sports").UITag()
-                Text("Simulator").UITag()
-                Text("Multiplayer").UITag()
-                Text("Strategy").UITag()
-                Text("Etc.").UITag()
+                if viewModel.isLoading {
+                    ForEach(0..<10, id: \.self) { _ in
+                        Text(".........").UITag()
+                    }
+                } else {
+                    ForEach(viewModel.tags) { tag in
+                        Text(tag.name).UITag()
+                    }
+                }
             }
             .container()
         }

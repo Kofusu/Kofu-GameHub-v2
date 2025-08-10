@@ -7,14 +7,14 @@
 
 import Foundation
 
-final class TagRepositoryImpl: DeveloperRepository {
+final class TagRepositoryImpl: TagRepository {
     var client: TagAPIClient
     
     init(client: TagAPIClient = .init()) {
         self.client = client
     }
     
-    func getDevelopers(limit: Int? = 10, offset: Int? = 0) async throws -> [Developer] {
+    func getTags(limit: Int? = 10, offset: Int? = 0) async throws -> [TagEntity] {
         let dtos = try await client.fetchTags(limit: limit, offset: offset)
         return dtos.map { $0.toEntity() }
     }
