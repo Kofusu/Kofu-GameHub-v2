@@ -13,33 +13,13 @@ struct HomeView: View {
     
     init() {
         _viewModel = StateObject(wrappedValue:
-                                    HomeViewModel(
-                                        getTagsUseCase: GetTagUseCaseImpl(
-                                            repository: TagRepositoryImpl(
-                                                client: TagAPIClient()
-                                            )
-                                        ),
-                                        getDevelopersUseCase: GetDevelopersUseCaseImpl(
-                                            repository: DeveloperRepositoryImpl(
-                                                client: DeveloperAPIClient()
-                                            )
-                                        ),
-                                        getPlatformUseCase: GetPlatformsUseCaseImpl(
-                                            repository: PlatformRepositoryImpl(
-                                                client: PlatformAPIClient()
-                                            )
-                                        ),
-                                        getPopularGameUseCase: GetPopularGameUseCaseImpl(
-                                            repository: GameRepositoryImpl(
-                                                client: GameAPIClient()
-                                            )
-                                        ),
-                                        getNewestGameUseCase: GetNewestGameUseCaseImpl(
-                                            repository: GameRepositoryImpl(
-                                                client: GameAPIClient()
-                                            )
-                                        ),
-                                    )
+            HomeViewModel(
+                getTagsUseCase: AppDIContainer.shared.container.resolve(GetTagsUseCase.self)!,
+                getDevelopersUseCase: AppDIContainer.shared.container.resolve(GetDevelopersUseCase.self)!,
+                getPlatformUseCase: AppDIContainer.shared.container.resolve(GetPlatformsUseCase.self)!,
+                getPopularGameUseCase: AppDIContainer.shared.container.resolve(GetPopularGameUseCase.self)!,
+                getNewestGameUseCase: AppDIContainer.shared.container.resolve(GetNewestGameUseCase.self)!
+            )
         )
     }
     

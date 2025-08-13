@@ -18,7 +18,6 @@ final class DetailGameViewModel: ObservableObject {
     private let getDetailGameUseCase: GetDetailGameUseCase
     
     var errorMessage: String?
-    var context: ModelContext?
     
     init(id: Int, getDetailGameUseCase: GetDetailGameUseCase) {
         self.id = id

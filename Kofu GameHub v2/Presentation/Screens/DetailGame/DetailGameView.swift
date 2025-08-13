@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import SwiftData
 import Flow
 
 struct DetailGameView: View {
@@ -14,6 +15,12 @@ struct DetailGameView: View {
     @Environment(\.modelContext) private var context
     
     @StateObject var viewModel: DetailGameViewModel
+    @Query private var likedGames: [LikedGame]
+    
+    // Computed property to check if current game is liked
+    private var isLiked: Bool {
+        likedGames.contains { $0.id == viewModel.id }
+    }
     
     init(id: Int) {
         _viewModel = StateObject(wrappedValue: DetailGameViewModel(id: id,
@@ -71,13 +78,13 @@ struct DetailGameView: View {
                         }
                         
                         Button {
-                            // TODO: Toggle Liked
+                            toggleLikedGame()
                         } label: {
-                            Image("pixelarticons_heart")
+                            Image(isLiked ? "pixelarticons_heart-fill" : "pixelarticons_heart")
                                 .icon(36)
                                 .background {
                                     RoundedRectangle(cornerRadius: 1000)
-                                        .fill(.darkCyan)
+                                        .fill(isLiked ? .red : .darkCyan)
                                         .frame(width: 64, height: 64, alignment: .center)
                                 }
                         }
@@ -121,8 +128,36 @@ struct DetailGameView: View {
             .foregroundStyle(.lightCyan)
             .task {
                 await viewModel.loadData()
-                viewModel.context = context
             }
+        }
+    }
+    
+    // MARK: - Private Methods
+    private func toggleLikedGame() {
+        guard let detailGame = viewModel.detailGame else { return }
+        
+        if isLiked {
+            // Remove from liked games
+            if let existingGame = likedGames.first(where: { $0.id == viewModel.id }) {
+                context.delete(existingGame)
+            }
+        } else {
+            // Add to liked games
+            let newLikedGame = LikedGame(
+                id: detailGame.id,
+                name: detailGame.name,
+                imageBackground: detailGame.backgroundImage,
+                released: detailGame.released,
+                rating: detailGame.rating
+            )
+            context.insert(newLikedGame)
+        }
+        
+        // Save changes
+        do {
+            try context.save()
+        } catch {
+            print("Error saving liked game: \(error)")
         }
     }
 }

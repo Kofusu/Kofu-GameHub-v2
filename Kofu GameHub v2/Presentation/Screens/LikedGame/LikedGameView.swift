@@ -6,10 +6,12 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct LikedGameView: View {
     @Environment(\.modelContext) private var context
     @StateObject var viewModel: LikedGameViewModel
+    @Query var likedGames: [LikedGame]
     
     init() {
         _viewModel = StateObject(wrappedValue: LikedGameViewModel())
@@ -31,18 +33,14 @@ struct LikedGameView: View {
                     
                     ScrollView {
                         LazyVStack(spacing: 32) {
-                            GameInfo(
-                                id: 1,
-                                name: "Elden Ring",
-                                rating: 4.8,
-                                released: Date(),
-                                imageURL: nil)
-                            GameInfo(
-                                id: 1,
-                                name: "Elden Ring",
-                                rating: 4.8,
-                                released: Date(),
-                                imageURL: nil)
+                            ForEach(likedGames) { game in
+                                GameInfo(
+                                    id: game.id,
+                                    name: game.name,
+                                    rating: game.rating,
+                                    released: game.released,
+                                    imageURL: game.imageBackground)
+                            }
                         }
                     }
                 }

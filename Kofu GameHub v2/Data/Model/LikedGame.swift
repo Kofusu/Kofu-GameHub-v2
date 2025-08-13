@@ -9,8 +9,8 @@ import Foundation
 import SwiftData
 
 @Model
-final class LikedGame {
-    var id: Int
+final class LikedGame: Identifiable {
+    @Attribute(.unique) var id: Int
     var name: String
     var imageBackground: URL?
     var released: Date?
