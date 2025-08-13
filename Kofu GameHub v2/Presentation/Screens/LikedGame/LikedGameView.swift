@@ -8,6 +8,12 @@
 import SwiftUI
 
 struct LikedGameView: View {
+    @Environment(\.modelContext) private var context
+    @StateObject var viewModel: LikedGameViewModel
+    
+    init() {
+        _viewModel = StateObject(wrappedValue: LikedGameViewModel())
+    }
     var body: some View {
         ZStack(alignment: .top) {
             Color.darkBlue.ignoresSafeArea(.all)
@@ -48,6 +54,9 @@ struct LikedGameView: View {
         }
         .toolbar(.hidden)
         .foregroundStyle(.lightCyan)
+        .task {
+            viewModel.context? = context
+        }
     }
 }
 

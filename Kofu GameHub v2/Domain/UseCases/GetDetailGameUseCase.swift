@@ -11,7 +11,7 @@ protocol GetDetailGameUseCase {
     func execute(id: Int) async throws -> DetailGame
 }
 
-final class GetDetailGameUseCaseImpl {
+final class GetDetailGameUseCaseImpl: GetDetailGameUseCase {
     var repository: GameRepository
     
     init(repository: GameRepository) {

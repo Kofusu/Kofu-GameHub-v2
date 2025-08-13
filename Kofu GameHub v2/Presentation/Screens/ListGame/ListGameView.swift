@@ -7,13 +7,24 @@
 
 import SwiftUI
 
-enum ListGameType {
-    case popular
-    case newest
-}
-
 struct ListGameView: View {
-    var listGameType: ListGameType
+    @StateObject var viewModel: ListGameViewModel
+    init(listGameType: ListGameType) {
+        _viewModel = StateObject(wrappedValue:
+                                    ListGameViewModel(listGameType: listGameType,
+                                                      getNewestGameUseCase: GetNewestGameUseCaseImpl(
+                                                        repository: GameRepositoryImpl(
+                                                            client: GameAPIClient()
+                                                        )
+                                                      ),
+                                                      getPopularGameUseCase: GetPopularGameUseCaseImpl(
+                                                        repository: GameRepositoryImpl(
+                                                            client: GameAPIClient()
+                                                        )
+                                                      )
+                                                     )
+        )
+    }
     
     var body: some View {
         ZStack(alignment: .top) {
@@ -24,7 +35,7 @@ struct ListGameView: View {
                 
                 VStack(spacing: 16) {
                     HStack {
-                        Text(listGameType == .popular
+                        Text(viewModel.listGameType == .popular
                              ? "Popular Games"
                              : "Newest Games"
                         ).font(.customBody)
@@ -35,19 +46,26 @@ struct ListGameView: View {
                     
                     ScrollView {
                         LazyVStack(spacing: 32) {
-                            GameInfo(
-                                id: 1,
-                                name: "Elden Ring",
-                                rating: 4.8,
-                                released: Date(),
-                                imageURL: nil)
-                            GameInfo(
-                                id: 1,
-                                name: "Elden Ring",
-                                rating: 4.8,
-                                released: Date(),
-                                imageURL: nil)
+                            if viewModel.isLoading {
+                                GameInfo(
+                                    id: 0,
+                                    name: "...",
+                                    rating: 0,
+                                    released: nil,
+                                    imageURL: nil,
+                                disableNavigation: true)
+                            } else {
+                                ForEach(viewModel.games) { game in
+                                    GameInfo(
+                                        id: game.id,
+                                        name: game.name,
+                                        rating: game.rating,
+                                        released: game.released,
+                                        imageURL: game.backgroundImage)
+                                }
+                            }
                         }
+                        .scrollIndicators(.hidden)
                     }
                 }
                 .container()
@@ -58,6 +76,9 @@ struct ListGameView: View {
         }
         .toolbar(.hidden)
         .foregroundStyle(.lightCyan)
+        .task {
+            await viewModel.loadData()
+        }
     }
 }
 

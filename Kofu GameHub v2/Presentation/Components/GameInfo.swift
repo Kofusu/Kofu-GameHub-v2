@@ -12,7 +12,7 @@ struct GameInfo: View {
     let id: Int
     let name: String
     let rating: Double
-    let released: Date
+    let released: Date?
     let imageURL: URL?
     
     var disableNavigation: Bool? = false
@@ -32,26 +32,44 @@ struct GameInfo: View {
     @ViewBuilder
     var content: some View {
         HStack {
-            if let _ = imageURL {
-                ProgressView()
-                    .frame(width: 119, height: 67)
-                    .background {
-                        RoundedRectangle(cornerRadius: 4)
-                            .fill(.gray)
+                if let img = imageURL {
+                    AsyncImage(url: img) { phase in
+                        switch phase {
+                        case .empty:
+                            ProgressView()
+                        case .success(let image):
+                            image
+                                .resizable()
+                                .scaledToFill()
+                        case .failure:
+                            Image(systemName: "icloud.slash")
+                        @unknown default:
+                            EmptyView()
+                        }
                     }
-            } else {
-                Image(systemName: "icloud.slash")
                     .frame(width: 119, height: 67)
-                    .background {
-                        RoundedRectangle(cornerRadius: 4)
-                            .fill(.gray)
-                    }
-            }
+                    .clipShape(RoundedRectangle(cornerRadius: 4))
+                } else {
+                    ProgressView()
+                        .frame(width: 119, height: 67)
+                        .background {
+                            RoundedRectangle(cornerRadius: 4)
+                                .fill(.gray)
+                        }
+                }
+           
             
             VStack(alignment: .leading, spacing: 6) {
                 Text(name).font(.customHeading)
+                    .lineLimit(1)
                 Text("Rating: \(String(rating))").font(.customBody)
-                Text("Released: \(released.formatDate())").font(.customBody)
+                if let released {
+                    Text("Released: \(released.formatDate())")
+                        .font(.customBody)
+                } else {
+                    Text("Released: -")
+                        .font(.customBody)
+                }
             }
             
             Spacer()

@@ -37,6 +37,7 @@ struct SearchHeaderApp: View {
                 RoundedRectangle(cornerRadius: 4)
                     .foregroundStyle(.darkBlue)
             }
+            .font(.customBody)
             
             Spacer()
         }

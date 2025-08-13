@@ -8,34 +8,42 @@
 import SwiftUI
 
 struct SearchGameView: View {
-    @State var searchtext = ""
+    @StateObject var viewModel: SearchGameViewModel
+    
+    init() {
+        _viewModel = StateObject(wrappedValue: SearchGameViewModel(
+            searchGameUseCase: SearchGameUseCaseImpl(
+                repository: GameRepositoryImpl(
+                    client: GameAPIClient()
+                )
+            )
+        )
+        )
+    }
+    
     var body: some View {
         ZStack(alignment: .top) {
             Color.darkBlue.ignoresSafeArea(.all)
             
             VStack(alignment: .leading) {
-                SearchHeaderApp(searchText: $searchtext)
+                SearchHeaderApp(searchText: $viewModel.searchtext)
                 
                 VStack(spacing: 16) {
                     HStack {
-                        Text("Search For: ...").font(.customBody)
+                        Text("Search For: \(viewModel.searchtext)").font(.customBody)
                         Spacer()
                     }
                     
                     ScrollView {
                         LazyVStack(spacing: 32) {
-                            GameInfo(
-                                id: 1,
-                                name: "Elden Ring",
-                                rating: 4.8,
-                                released: Date(),
-                                imageURL: nil)
-                            GameInfo(
-                                id: 1,
-                                name: "Elden Ring",
-                                rating: 4.8,
-                                released: Date(),
-                                imageURL: nil)
+                            ForEach(viewModel.games) { game in
+                                GameInfo(
+                                    id: game.id,
+                                    name: game.name,
+                                    rating: game.rating,
+                                    released: game.released,
+                                    imageURL: game.backgroundImage)
+                            }
                         }
                     }
                 }

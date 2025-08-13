@@ -11,8 +11,19 @@ import Flow
 
 struct DetailGameView: View {
     @Environment(\.dismiss) var dismiss
+    @Environment(\.modelContext) private var context
     
-    let id: Int
+    @StateObject var viewModel: DetailGameViewModel
+    
+    init(id: Int) {
+        _viewModel = StateObject(wrappedValue: DetailGameViewModel(id: id,
+                                                                   getDetailGameUseCase: GetDetailGameUseCaseImpl(
+                                                                    repository: GameRepositoryImpl(
+                                                                        client: GameAPIClient())
+                                                                   )
+                                                                  )
+        )
+    }
     
     var body: some View {
         GeometryReader { geo in
@@ -21,13 +32,26 @@ struct DetailGameView: View {
                 
                 VStack(alignment: .leading, spacing: 20) {
                     ZStack(alignment: .topLeading) {
-                        if false {
-                            ProgressView()
-                                .frame(maxWidth: .infinity, maxHeight: geo.size.height * 0.3)
-                                .background {
-                                    RoundedRectangle(cornerRadius: 4)
-                                        .fill(.gray)
+                        if let img = viewModel.detailGame?.backgroundImage {
+                            AsyncImage(url: img) { phase in
+                                switch phase {
+                                case .empty:
+                                    ProgressView()
+                                case .success(let image):
+                                    image
+                                        .resizable()
+                                        .scaledToFill()
+                                case .failure:
+                                    Image(systemName: "icloud.slash")
+                                @unknown default:
+                                    EmptyView()
                                 }
+                            }
+                            .frame(maxWidth: .infinity, maxHeight: geo.size.height * 0.3)
+                            .background {
+                                RoundedRectangle(cornerRadius: 4)
+                                    .fill(.gray)
+                            }
                         } else {
                             Image(systemName: "icloud.slash")
                                 .frame(maxWidth: .infinity, maxHeight: geo.size.height * 0.3)
@@ -65,37 +89,40 @@ struct DetailGameView: View {
                             VStack(alignment: .leading, spacing: 5) {
                                 GameInfo(
                                     id: 1,
-                                    name: "Elden Ring",
-                                    rating: 4.8,
-                                    released: Date(),
-                                    imageURL: nil,
+                                    name: viewModel.detailGame?.name ?? "-",
+                                    rating: viewModel.detailGame?.rating ?? 0,
+                                    released: viewModel.detailGame?.released,
+                                    imageURL: viewModel.detailGame?.backgroundImage,
                                     disableNavigation: true)
                                 
-                                Text("Lorem Ipsum")
+                                Text(viewModel.detailGame?.description ?? "-")
                                     .font(.customBody)
                             }
                             .container()
                             
-                            VStack(alignment: .leading, spacing: 8) {
-                                Text("Tags")
-                                    .font(.customBody)
-                                
-                                HFlow(alignment: .top, spacing: 11) {
-                                    Text("Fighting").UITag()
-                                    Text("Fighting").UITag()
-                                    Text("Fighting").UITag()
-                                    Text("Fighting").UITag()
-                                    Text("Fighting").UITag()
-                                    Text("Fighting").UITag()
+                            if let gameTags = viewModel.detailGame?.tags {
+                                VStack(alignment: .leading, spacing: 8) {
+                                    Text("Tags")
+                                        .font(.customBody)
+                                    
+                                    HFlow(alignment: .top, spacing: 11) {
+                                        ForEach(gameTags, id: \.self) { name in
+                                            Text(name).UITag()
+                                        }
+                                    }
                                 }
+                                .container()
                             }
-                            .container()
                         }
                     }
                 }
             }
             .toolbar(.hidden)
             .foregroundStyle(.lightCyan)
+            .task {
+                await viewModel.loadData()
+                viewModel.context = context
+            }
         }
     }
 }

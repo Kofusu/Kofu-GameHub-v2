@@ -51,7 +51,8 @@ struct GameAPIClient {
         var urlComponents = URLComponents(string: "\(API_URL)/games")
         urlComponents?.queryItems = [
             URLQueryItem(name: "key", value: API_KEY),
-            URLQueryItem(name: "search_exact", value: query),
+            URLQueryItem(name: "search", value: query),
+            URLQueryItem(name: "search_exact", value: "true"),
         ]
         
         guard let url = urlComponents?.url else {

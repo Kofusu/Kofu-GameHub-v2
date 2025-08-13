@@ -11,8 +11,17 @@ import SwiftData
 @Model
 final class LikedGame {
     var id: Int
+    var name: String
+    var imageBackground: URL?
+    var released: Date?
+    var rating: Double
     
-    init(id: Int) {
+    init(id: Int, name: String, imageBackground: URL?, released: Date?, rating: Double) {
         self.id = id
+        self.name = name
+        self.imageBackground = imageBackground
+        self.released = released
+        self.rating = rating
+
     }
 }
