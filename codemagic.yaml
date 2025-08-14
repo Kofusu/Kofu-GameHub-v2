@@ -8,13 +8,13 @@ workflows:
       - name: Resolve SPM dependencies
         script: |
           xcodebuild -resolvePackageDependencies \
-            -workspace "Kofu GameHub v2.xcworkspace" \
+            -project "Kofu GameHub v2.xcodeproj" \
             -scheme "Kofu GameHub v2"
       - name: Run unit tests (exclude UI tests)
         script: |
           set -eo pipefail
           xcodebuild \
-            -workspace "Kofu GameHub v2.xcworkspace" \
+            -project "Kofu GameHub v2.xcodeproj" \
             -scheme "Kofu GameHub v2" \
             -sdk iphonesimulator \
             -destination 'platform=iOS Simulator,name=iPhone 16 Pro,OS=18.5' \
