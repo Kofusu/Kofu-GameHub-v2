@@ -1,0 +1,30 @@
+workflows:
+  ios-unit-tests:
+    name: iOS Unit Tests
+    max_build_duration: 60
+    environment:
+      xcode: latest
+    scripts:
+      - name: Resolve SPM dependencies
+        script: |
+          xcodebuild -resolvePackageDependencies \
+            -workspace "Kofu GameHub v2.xcworkspace" \
+            -scheme "Kofu GameHub v2"
+      - name: Run unit tests (exclude UI tests)
+        script: |
+          set -eo pipefail
+          xcodebuild \
+            -workspace "Kofu GameHub v2.xcworkspace" \
+            -scheme "Kofu GameHub v2" \
+            -sdk iphonesimulator \
+            -destination 'platform=iOS Simulator,name=iPhone 16 Pro,OS=18.5' \
+            -configuration Debug \
+            clean test \
+            -skip-testing:"Kofu GameHub v2UITests"
+    artifacts:
+      - build/ios/**/*.xcresult
+      - build/ios/**/*.log
+    publishing:
+      email:
+        recipients:
+          - kofusu@protonmail.com

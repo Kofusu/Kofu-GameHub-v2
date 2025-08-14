@@ -10,6 +10,7 @@
 		DC86C1C82E3D16BB0044B66D /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = DC86C1C72E3D16BB0044B66D /* Swinject */; };
 		DC86C1CB2E3D16C70044B66D /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = DC86C1CA2E3D16C70044B66D /* Alamofire */; };
 		DC86C1CE2E3D16D10044B66D /* Flow in Frameworks */ = {isa = PBXBuildFile; productRef = DC86C1CD2E3D16D10044B66D /* Flow */; };
+		DCFA17FF2E4E4B07007FCF26 /* codemagic.yaml in Resources */ = {isa = PBXBuildFile; fileRef = DCFA17FE2E4E4B05007FCF26 /* codemagic.yaml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +34,7 @@
 		DC86C1732E3D0FBA0044B66D /* Kofu GameHub v2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Kofu GameHub v2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC86C1822E3D0FBD0044B66D /* Kofu GameHub v2 - Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Kofu GameHub v2 - Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC86C18C2E3D0FBD0044B66D /* Kofu GameHub v2 - UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Kofu GameHub v2 - UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DCFA17FE2E4E4B05007FCF26 /* codemagic.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = codemagic.yaml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -84,6 +86,7 @@
 		DC86C16A2E3D0FBA0044B66D = {
 			isa = PBXGroup;
 			children = (
+				DCFA17FE2E4E4B05007FCF26 /* codemagic.yaml */,
 				DC86C1752E3D0FBA0044B66D /* Kofu GameHub v2 */,
 				DC86C1852E3D0FBD0044B66D /* Kofu GameHub v2 - Tests */,
 				DC86C18F2E3D0FBD0044B66D /* Kofu GameHub v2 - UITests */,
@@ -230,6 +233,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCFA17FF2E4E4B07007FCF26 /* codemagic.yaml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
