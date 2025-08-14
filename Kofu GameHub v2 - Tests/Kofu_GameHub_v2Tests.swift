@@ -9,7 +9,23 @@ import XCTest
 @testable import Kofu_GameHub_v2
 
 final class Kofu_GameHub_v2Tests: XCTestCase {
-
+    func testDateFormatter() throws {
+        // Arrange
+        var dateComponents = DateComponents()
+        dateComponents.year = 2025
+        dateComponents.month = 8
+        dateComponents.day = 14
+        let calendar = Calendar(identifier: .gregorian)
+        let date = calendar.date(from: dateComponents)!
+        
+        // Act
+        let formatted = date.formatDate("yyyy-MM-dd")
+        
+        // Assert
+        XCTAssertEqual(formatted, "2025-08-14", "Format Date should yyyy-MM-dd")
+    }
+    
+    // MARK: Example
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
