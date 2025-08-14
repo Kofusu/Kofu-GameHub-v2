@@ -16,7 +16,7 @@ final class LikedGameRepository {
     }
     
     func add (_ game: Game) {
-        var likedGame = LikedGame(id: game.id, name: game.name, imageBackground: game.backgroundImage, released: game.released, rating: game.rating)
+        let likedGame = LikedGame(id: game.id, name: game.name, imageBackground: game.backgroundImage, released: game.released, rating: game.rating)
         context.insert(likedGame)
         
         save()

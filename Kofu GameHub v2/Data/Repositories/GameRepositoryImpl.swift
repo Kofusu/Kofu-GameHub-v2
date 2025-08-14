@@ -33,8 +33,4 @@ final class GameRepositoryImpl: GameRepository {
         let dtos = try await client.fetchDetailGames(id: id)
         return dtos.toEntity()
     }
-    
-    // func getLikedGames(ids: [Int]) async throws -> [DetailGame] {
-    //
-    // }
 }

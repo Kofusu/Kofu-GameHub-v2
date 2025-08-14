@@ -1,7 +1,5 @@
 import Foundation
 
-import Foundation
-
 struct DetailGameDTO: Codable {
     let id: Int
     let slug: String

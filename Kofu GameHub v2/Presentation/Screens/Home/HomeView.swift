@@ -13,13 +13,7 @@ struct HomeView: View {
     
     init() {
         _viewModel = StateObject(wrappedValue:
-            HomeViewModel(
-                getTagsUseCase: AppDIContainer.shared.container.resolve(GetTagsUseCase.self)!,
-                getDevelopersUseCase: AppDIContainer.shared.container.resolve(GetDevelopersUseCase.self)!,
-                getPlatformUseCase: AppDIContainer.shared.container.resolve(GetPlatformsUseCase.self)!,
-                getPopularGameUseCase: AppDIContainer.shared.container.resolve(GetPopularGameUseCase.self)!,
-                getNewestGameUseCase: AppDIContainer.shared.container.resolve(GetNewestGameUseCase.self)!
-            )
+                                    AppDIContainer.shared.container.resolve(HomeViewModel.self)!
         )
     }
     
