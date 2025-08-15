@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol TagRepository {
+public protocol TagRepository {
     func getTags(limit: Int?, offset: Int?) async throws -> [TagEntity]
 }

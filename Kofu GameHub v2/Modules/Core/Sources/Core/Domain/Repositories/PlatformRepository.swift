@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol PlatformRepository {
+public protocol PlatformRepository {
     func getPlatforms(limit: Int?, offset: Int?) async throws -> [Platform]
 }

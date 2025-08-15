@@ -8,19 +8,19 @@
 import Foundation
 
 
-protocol SearchGameUseCase {
+public protocol SearchGameUseCase {
     func execute(query: String) async throws -> [Game]
 }
 
 
-final class SearchGameUseCaseImpl: SearchGameUseCase {
-    var repository: GameRepository
+public final class SearchGameUseCaseImpl: SearchGameUseCase {
+    public var repository: GameRepository
     
-    init(repository: GameRepository) {
+    public init(repository: GameRepository) {
         self.repository = repository
     }
     
-    func execute(query: String) async throws -> [Game] {
+    public func execute(query: String) async throws -> [Game] {
         try await repository.searchGames(query: query)
     }
 }

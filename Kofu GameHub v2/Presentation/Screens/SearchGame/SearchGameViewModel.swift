@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import Core
 
 @MainActor
 final class SearchGameViewModel: ObservableObject {

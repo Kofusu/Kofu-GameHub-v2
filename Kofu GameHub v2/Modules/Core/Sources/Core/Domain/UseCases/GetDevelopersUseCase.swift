@@ -7,18 +7,18 @@
 
 import Foundation
 
-protocol GetDevelopersUseCase {
+public protocol GetDevelopersUseCase {
     func execute(limit: Int?, offset: Int?) async throws -> [Developer]
 }
 
-final class GetDevelopersUseCaseImpl: GetDevelopersUseCase {
-    var repository: DeveloperRepository
+public final class GetDevelopersUseCaseImpl: GetDevelopersUseCase {
+    public var repository: DeveloperRepository
     
-    init(repository: DeveloperRepository) {
+    public init(repository: DeveloperRepository) {
         self.repository = repository
     }
     
-    func execute(limit: Int? = 5, offset: Int? = 0) async throws -> [Developer] {
+    public func execute(limit: Int? = 5, offset: Int? = 0) async throws -> [Developer] {
         try await repository.getDevelopers(limit: limit, offset: offset)
     }
 }

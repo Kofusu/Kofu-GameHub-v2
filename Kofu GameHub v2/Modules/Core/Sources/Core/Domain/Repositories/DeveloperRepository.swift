@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol DeveloperRepository {
+public protocol DeveloperRepository {
     func getDevelopers(limit: Int?, offset: Int?) async throws -> [Developer]
 }

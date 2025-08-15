@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Core
 
 final class PlatformRepositoryImpl: PlatformRepository {
     var client: PlatformAPIClient

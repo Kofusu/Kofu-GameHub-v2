@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Core
 
 struct DeveloperListResponse: Codable {
     let count: Int

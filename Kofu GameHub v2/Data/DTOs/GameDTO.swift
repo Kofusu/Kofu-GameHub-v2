@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Core
 
 struct GameListResponse: Codable {
     let count: Int

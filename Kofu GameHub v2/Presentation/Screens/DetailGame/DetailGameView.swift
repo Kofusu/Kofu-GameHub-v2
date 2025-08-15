@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 import SwiftData
 import Flow
+import Core
 
 struct DetailGameView: View {
     @Environment(\.dismiss) var dismiss

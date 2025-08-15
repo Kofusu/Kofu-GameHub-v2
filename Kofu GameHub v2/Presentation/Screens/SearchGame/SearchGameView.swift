@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Core
 
 struct SearchGameView: View {
     @StateObject var viewModel: SearchGameViewModel

@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftData
+import Core
 
 final class DetailGameViewModel: ObservableObject {
     @Published var id: Int

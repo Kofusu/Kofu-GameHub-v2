@@ -7,18 +7,18 @@
 
 import Foundation
 
-protocol GetDetailGameUseCase {
+public protocol GetDetailGameUseCase {
     func execute(id: Int) async throws -> DetailGame
 }
 
-final class GetDetailGameUseCaseImpl: GetDetailGameUseCase {
-    var repository: GameRepository
+public final class GetDetailGameUseCaseImpl: GetDetailGameUseCase {
+    public var repository: GameRepository
     
-    init(repository: GameRepository) {
+    public init(repository: GameRepository) {
         self.repository = repository
     }
     
-    func execute(id: Int) async throws -> DetailGame {
+    public func execute(id: Int) async throws -> DetailGame {
         try await repository.getDetailGame(id: id)
     }
 }

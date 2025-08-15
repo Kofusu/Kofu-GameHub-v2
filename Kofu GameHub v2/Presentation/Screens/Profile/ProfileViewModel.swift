@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Core
 
 class ProfileViewModel: ObservableObject {
     let interest = ["UI/UX", "Frontend Engineering", "Machine Learning", "Web Development", "Mobile App Development", "3D"]

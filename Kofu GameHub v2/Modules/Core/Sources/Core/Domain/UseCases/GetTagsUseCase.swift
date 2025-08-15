@@ -7,18 +7,18 @@
 
 import Foundation
 
-protocol GetTagsUseCase {
+public protocol GetTagsUseCase {
     func execute(limit: Int?, offset: Int?) async throws -> [TagEntity]
 }
 
-final class GetTagUseCaseImpl: GetTagsUseCase {
-    var repository: TagRepository
+public final class GetTagUseCaseImpl: GetTagsUseCase {
+    public var repository: TagRepository
     
-    init(repository: TagRepository) {
+    public init(repository: TagRepository) {
         self.repository = repository
     }
     
-    func execute(limit: Int? = 10, offset: Int? = 0) async throws -> [TagEntity] {
+    public func execute(limit: Int? = 10, offset: Int? = 0) async throws -> [TagEntity] {
         try await repository.getTags(limit: limit, offset: offset)
     }
 }

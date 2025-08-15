@@ -7,18 +7,18 @@
 
 import Foundation
 
-protocol GetPopularGameUseCase {
+public protocol GetPopularGameUseCase {
     func execute(limit: Int?, offset: Int?) async throws -> [Game]
 }
 
-final class GetPopularGameUseCaseImpl: GetPopularGameUseCase {
-    private let repository: GameRepository
+public final class GetPopularGameUseCaseImpl: GetPopularGameUseCase {
+    public let repository: GameRepository
     
-    init(repository: GameRepository) {
+    public init(repository: GameRepository) {
         self.repository = repository
     }
     
-    func execute(limit: Int? = 10, offset: Int? = 0) async throws -> [Game] {
+    public func execute(limit: Int? = 10, offset: Int? = 0) async throws -> [Game] {
         try await repository.getPopularGames(limit: limit, offset: offset)
     }
 }

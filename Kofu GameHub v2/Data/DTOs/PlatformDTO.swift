@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Core
 
 struct PlatformListResponse: Codable {
     let count: Int

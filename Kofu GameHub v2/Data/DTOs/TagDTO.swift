@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Core
 
 struct TagListResponse: Codable {
     let count: Int

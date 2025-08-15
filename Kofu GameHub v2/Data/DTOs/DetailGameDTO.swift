@@ -1,4 +1,5 @@
 import Foundation
+import Core
 
 struct DetailGameDTO: Codable {
     let id: Int

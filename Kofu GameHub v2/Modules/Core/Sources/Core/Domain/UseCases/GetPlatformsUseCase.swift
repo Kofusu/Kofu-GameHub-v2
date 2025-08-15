@@ -7,18 +7,18 @@
 
 import Foundation
 
-protocol GetPlatformsUseCase {
+public protocol GetPlatformsUseCase {
     func execute(limit: Int?, offset: Int?) async throws -> [Platform]
 }
 
-final class GetPlatformsUseCaseImpl: GetPlatformsUseCase {
-    var repository: PlatformRepository
+public final class GetPlatformsUseCaseImpl: GetPlatformsUseCase {
+    public var repository: PlatformRepository
     
-    init(repository: PlatformRepository) {
+    public init(repository: PlatformRepository) {
         self.repository = repository
     }
     
-    func execute(limit: Int? = 10, offset: Int? = 0) async throws -> [Platform] {
+    public func execute(limit: Int? = 10, offset: Int? = 0) async throws -> [Platform] {
         try await repository.getPlatforms(limit: limit, offset: offset)
     }
 }
